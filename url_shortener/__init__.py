@@ -1,6 +1,7 @@
 from flask import flask
 
 from .extensions import db
+from .routes import short
 
 def create_app(config_file='settings.py'):
   app = flask(__name__)
@@ -8,5 +9,7 @@ def create_app(config_file='settings.py'):
   app.config.from_pyfile(config_file)
 
   db.init_app(app)
+
+  app.register_blueprint(short)
 
   return app
