@@ -4,7 +4,7 @@ from .extensions import db
 from .routes import short
 
 def create_app(config_file='settings.py'):
-  app = flask(__name__)
+  app = Flask(__name__)
 
   app.config.from_pyfile(config_file)
 
