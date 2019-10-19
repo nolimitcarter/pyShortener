@@ -1,6 +1,6 @@
 import string
-from random import choices
 from datetime import datetime
+from random import choices
 
 from .extensions import db
 
@@ -12,14 +12,14 @@ class Link(db.Model):
   date_created = db.Column(db.DateTime, default=datetime.now)
 
   def __init__(self, **kwargs):
-    super().__init__(**kwards)
+    super().__init__(**kwargs)
     self.short_url = self.generate_short_link()
 
   def generate_short_link(self):
-      characters = string.digit + string.ascii_letters
+      characters = string.digits + string.ascii_letters
       short_url = ''.join(choices(characters, k=3))
 
-      self.query.filter_by(short_url=short_url).first()
+      link = self.query.filter_by(short_url=short_url).first()
 
       if link:
         return self.generate_short_link()
